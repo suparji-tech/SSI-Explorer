@@ -1,51 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSI-Explorer</title>
-  <link rel="icon" type="image/png" href="https://github.com/suparji-tech.png">
-  <meta name="description" content="SSI-Explorer">
-  <meta name="theme-color" content="#0f172a">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif;background:#f1f5f9}
-    .app-container{position:fixed;inset:0;width:100%;height:100%;background:#fff}
-    .app-frame{display:block;width:100%;height:100%;border:0}
-    .loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#334155;background:#f8fafc;z-index:1;transition:opacity .3s ease}
-    .spinner{width:42px;height:42px;border:4px solid #cbd5e1;border-top-color:#2563eb;border-radius:50%;animation:spin .8s linear infinite}
-    .loading p{font-size:14px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    @media(max-width:600px){.loading p{font-size:12px}}
-    @media(prefers-reduced-motion:reduce){.spinner{animation:none}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SSI-Explorer | Portal Inkuiri IPS</title>
+<meta name="description" content="SSI-Explorer - Portal Inkuiri Isu Sosiosaintifik untuk pembelajaran IPS.">
+<meta name="theme-color" content="#0f172a">
+<link rel="icon" type="image/png" href="https://github.com/suparji-tech.png">
+<style>
+:root{--navy:#0f172a;--blue:#1d4ed8}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;padding:0;overflow:hidden}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#0f172a}
+.app{position:fixed;inset:0;width:100%;height:100%;height:100dvh;background:#fff;overflow:hidden}
+.frame{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;margin:0;padding:0;background:#fff}
+.loading{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#f8fafc;color:#334155;transition:opacity .22s ease,visibility .22s ease}
+.loading.done{opacity:0;visibility:hidden;pointer-events:none}
+.spinner{width:40px;height:40px;border:4px solid #cbd5e1;border-top-color:#2563eb;border-radius:50%;animation:spin .75s linear infinite}
+.loading p{font-size:14px;margin:0}.loading small{font-size:12px;color:#64748b}
+.fallback{display:none;position:absolute;z-index:6;left:16px;right:16px;bottom:16px;padding:14px;border:1px solid #cbd5e1;border-radius:14px;background:#fff;box-shadow:0 8px 30px #0f172a1a;text-align:center}
+.fallback.show{display:block}.fallback p{font-size:13px;line-height:1.5;color:#475569;margin:0 0 10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border:0;border-radius:10px;background:#1d4ed8;color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+.btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spinner{animation:none}.loading{transition:none}}
+</style>
 </head>
 <body>
-  <main class="app-container">
-    <div class="loading" id="loading" role="status" aria-live="polite">
-      <div class="spinner"></div>
-      <p>Memuat SSI-Explorer...</p>
-    </div>
-    <iframe
-      class="app-frame"
-      id="appFrame"
-      src="https://script.google.com/a/macros/admin.smp.belajar.id/s/AKfycbyS8MaGDOFMkJxMaCJmw0dO9GWwOc3F56y4w1X9mnfNRK8rLp6nRZHK0rgkunglq8kCFA/exec"
-      title="SSI-Explorer"
-      allow="fullscreen"
-      allowfullscreen
-      loading="eager"
-      referrerpolicy="strict-origin-when-cross-origin">
-    </iframe>
-  </main>
-  <script>
-    (function(){
-      const frame=document.getElementById('appFrame');
-      const loading=document.getElementById('loading');
-      frame.addEventListener('load',function(){
-        loading.style.opacity='0';
-        window.setTimeout(function(){loading.style.display='none'},300);
-      });
-    })();
-  </script>
+<main class="app" aria-label="SSI-Explorer">
+  <div class="loading" id="loading" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
+    <p id="loadingText">Memuat SSI-Explorer…</p>
+    <small>Mohon tunggu, aplikasi sedang dibuka.</small>
+  </div>
+  <iframe class="frame" id="appFrame" title="SSI-Explorer — Portal Inkuiri IPS"
+    src="https://script.google.com/a/macros/admin.smp.belajar.id/s/AKfycbyS8MaGDOFMkJxMaCJmw0dO9GWwOc3F56y4w1X9mnfNRK8rLp6nRZHK0rgkunglq8kCFA/exec"
+    allow="fullscreen" allowfullscreen loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  <section class="fallback" id="fallback" aria-live="polite">
+    <p>Jika aplikasi tidak tampil dengan benar di dalam bingkai ini, buka SSI-Explorer langsung pada tab baru.</p>
+    <a class="btn" href="https://script.google.com/a/macros/admin.smp.belajar.id/s/AKfycbyS8MaGDOFMkJxMaCJmw0dO9GWwOc3F56y4w1X9mnfNRK8rLp6nRZHK0rgkunglq8kCFA/exec" target="_blank" rel="noopener noreferrer">↗ Buka SSI-Explorer</a>
+  </section>
+</main>
+<script>
+(() => {
+  const frame=document.getElementById('appFrame');
+  const loading=document.getElementById('loading');
+  const loadingText=document.getElementById('loadingText');
+  const fallback=document.getElementById('fallback');
+  let loaded=false;
+  function finishLoading(){
+    if(loaded)return;
+    loaded=true;
+    loading.classList.add('done');
+    window.setTimeout(()=>fallback.classList.add('show'),4500);
+  }
+  frame.addEventListener('load',()=>{
+    loadingText.textContent='Aplikasi diterima, menyiapkan tampilan…';
+    window.setTimeout(finishLoading,350);
+  });
+  frame.addEventListener('error',()=>{
+    loadingText.textContent='Aplikasi tidak dapat dimuat di dalam bingkai.';
+    loading.classList.add('done');fallback.classList.add('show');
+  });
+  window.setTimeout(()=>{
+    if(!loaded){
+      loadingText.textContent='Aplikasi belum merespons. Anda dapat membukanya langsung.';
+      loading.classList.add('done');fallback.classList.add('show');
+    }
+  },15000);
+})();
+</script>
 </body>
 </html>
