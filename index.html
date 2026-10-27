@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation</title>
+
+    <!-- Ganti 'pak-yo' dengan username GitHub Anda -->
+    <script>
+        const githubUsername = 'suparji-tech'; 
+        
+        // Dynamic Favicon dari Foto Profil GitHub
+        const faviconUrl = `https://github.com/${suparji-tech}.png`;
+        const link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/png';
+        link.href = faviconUrl;
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Tambahan untuk penyesuaian iframe */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 80px); /* Menyesuaikan tinggi layar HP/Laptop minus Header */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Branding & Logo GitHub -->
+            <div class="flex items-center space-x-3">
+                <img id="user-avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="" alt="Profile">
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">Portal Web App</h1>
+                    <p class="text-xs text-blue-200 hidden sm:block">Sistem Layanan Digital</p>
+                </div>
+            </div>
+
+            <!-- Tombol Aksi / Buka di Tab Baru -->
+            <div class="flex items-center space-x-2">
+                <!-- https://script.google.com/a/macros/admin.smp.belajar.id/s/AKfycbyS8MaGDOFMkJxMaCJmw0dO9GWwOc3F56y4w1X9mnfNRK8rLp6nRZHK0rgkunglq8kCFA/exec -->
+                <a id="gas-direct-link" href="https://script.google.com/a/macros/admin.smp.belajar.id/s/AKfycbyS8MaGDOFMkJxMaCJmw0dO9GWwOc3F56y4w1X9mnfNRK8rLp6nRZHK0rgkunglq8kCFA/exec" target="_blank" rel="noopener noreferrer" 
+                   class="bg-blue-600 hover:bg-blue-800 text-white text-xs sm:text-sm font-medium py-2 px-3 sm:px-4 rounded-lg flex items-center gap-2 transition duration-200 shadow-sm border border-blue-500">
+                    <i class="fa-solid fa-up-right-from-square">
+                    <span>Buka Tab Baru</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content / Iframe Embed -->
+    <main class="flex-grow flex flex-col items-center justify-center">
+        <div class="w-full h-full iframe-container">
+            <!-- GANTI URL SRC DI BAWAH DENGAN URL GOOGLE APPS SCRIPT ANDA -->
+            <iframe 
+                id="gas-iframe"
+                src="https://script.google.com/a/macros/admin.smp.belajar.id/s/AKfycbyS8MaGDOFMkJxMaCJmw0dO9GWwOc3F56y4w1X9mnfNRK8rLp6nRZHK0rgkunglq8kCFA/exec" 
+                class="w-full h-full border-0"
+                allow="geolocation; microphone; camera; clipboard-write; encrypted-media"
+                loading="lazy">
+                <p>Browser Anda tidak mendukung iframe. Silakan klik tombol "Buka Tab Baru" di atas.</p>
+            </iframe>
+        </div>
+    </main>
+
+    <script>
+        // Mengatur foto profil avatar header secara otomatis dari GitHub
+        document.getElementById('user-avatar').src = `https://github.com/${suparji-tech}.png`;
+    </script>
+</body>
+</html>
